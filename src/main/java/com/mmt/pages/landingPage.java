@@ -287,32 +287,8 @@ public class landingPage extends baseclass
 	 */
 	public void validate_FlightsRates_WithFooter_Prices()
 	{
-		/*
-		 * ********~~~~~~~~~~~~~~~~~~~~~~********
-			Total number of Departure Flights delhi are :: 74 | and Return Flights from bangalore are :: 73
-			********~~~~~~~~~~~~~~~~~~~~~~********
-			Non-Stop Departure Flights delhi are :: 28 | and Return Flights from bangalore are :: 36
-			********~~~~~~~~~~~~~~~~~~~~~~********
-			One-Stop Departure Flights  delhi are :: 40 | and Return Flights from bangalore are :: 33
-			********~~~~~~~~~~~~~~~~~~~~~~********
-			1. Departure rate : Rs 7,532 Return Rate : Rs 5,660
-			2. Departure rate : Rs 10,635 Return Rate : Rs 5,660
-			3. Departure rate : Rs 11,008 Return Rate : Rs 6,020
-			4. Departure rate : Rs 11,575 Return Rate : Rs 6,155
-			5. Departure rate : Rs 11,673 Return Rate : Rs 6,662
-			6. Departure rate : Rs 12,021 Return Rate : Rs 6,840
-			7. Departure rate : Rs 12,519 Return Rate : Rs 6,840
-			8. Departure rate : Rs 12,519 Return Rate : Rs 7,102
-			9. Departure rate : Rs 13,149 Return Rate : Rs 7,102
-			10. Departure rate : Rs 13,374 Return Rate : Rs 7,102
-			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			Departure Round Trip Prices is :Rs 7,532
-			Actual    Round Trip Price without Deicount is :Rs 5,660
-			Footeer Total Fare      : Rs 13,192
-			Footer Price discounted : Rs 13,192
-			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		 */
-//driver.navigate().refresh();
+		
+		//driver.navigate().refresh();
 		WebElement wait = new WebDriverWait(driver,20).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOf(txtDeparture_Flight));
 		highLightElement(driver,txtDeparture_Flight,prop);
 		int dptFlight_count = departure_flights.size();
@@ -322,12 +298,9 @@ public class landingPage extends baseclass
 		highLightElement(driver,txtReturn_Flight,prop);
 		waitFor_OneSec();
 		int ReturnFlight_count = Return_flights.size();
-		
-//		System.out.println("departure_flights_rates : " + departure_flights_rates.size());
-//		System.out.println("return_flights_rates    : " + return_flights_rates.size());
-		
-		
-		
+		//		System.out.println("departure_flights_rates : " + departure_flights_rates.size());
+		//		System.out.println("return_flights_rates    : " + return_flights_rates.size());
+
 		for(int i=0;i<1;i++)
 		{
 			String dep_rate="";
@@ -342,7 +315,7 @@ public class landingPage extends baseclass
 			int footer_total_fare_interger=0;
 			int calulated_Total_fare=0;
 			
-			System.out.println(i+1 +". Departure rate : " + departure_flights_rates.get(i).getText() + " Return Rate : " + return_flights_rates.get(i).getText());
+			//			System.out.println(i+1 +". Departure rate : " + departure_flights_rates.get(i).getText() + " Return Rate : " + return_flights_rates.get(i).getText());
 			dep_rate= departure_flights_rates.get(i).getText();
 			ret_rate= return_flights_rates.get(i).getText();
 			waitFor_OneSec();
@@ -362,50 +335,50 @@ public class landingPage extends baseclass
 		    try 
 		    {
 		    	dep_rate.equalsIgnoreCase(footer_dep_rate);
-		    	System.out.println("departure_flight_rate : "+dep_rate+" equals to footer_dep_rate : " +footer_dep_rate);
+		    	System.out.println("Departure_flight_rate : "+dep_rate+" equals to footer_dep_rate : " +footer_dep_rate);
 		    	if(footer_total_fare_interger==calulated_Total_fare)
 		    	{
-		    		System.out.println(
-		    				"departure_flight_rate : "+dep_rate
-		    				+" equals to footer_dep_rate : " +footer_dep_rate
-		    				+" Footer Mentioned Fare : " + footer_total_fare_interger + " is Equal to Sum of Departure & Return fare : " +calulated_Total_fare
-		    				);
+		    		System.out.println("Departure_flight_rate : "+dep_rate+" equals to footer_dep_rate : " +footer_dep_rate);
+
+		    		try 
+				    {
+				    	ret_rate.equalsIgnoreCase(footer_ret_rate);
+				    	System.out.println("Return_flight_rate " + ret_rate +" equals to footer_return_flight_rate :" + footer_ret_rate);
+				    	
+				    }
+				    catch(Exception e1)
+				    {
+				    	System.out.println("Return_flight_rate " + ret_rate +" not equals to footer_return_flight_rate :" + footer_ret_rate);
+				    }
+		    		
+		    		System.out.println("Footer Mentioned Fare : " + footer_total_fare_interger + " is Equal to Sum of Departure & Return fare : " +calulated_Total_fare);
+		    		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		    	}
 		    	else
 		    	{
-		    		System.out.println(
-		    				"departure_flight_rate : "+dep_rate
-		    				+" equals to footer_dep_rate : " +footer_dep_rate
-		    				+" Footer Mentioned Fare" + footer_total_fare_interger + " is NOT Equal to Sum of Departure & Return fare : " +calulated_Total_fare
-		    				);
+		    		System.out.println("departure_flight_rate : "+dep_rate+" equals to footer_dep_rate : " +footer_dep_rate);
+		    		System.out.println(" Footer Mentioned Fare" + footer_total_fare_interger + " is NOT Equal to Sum of Departure & Return fare : " +calulated_Total_fare);
+		    		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		    	}
 		    	
 		    }
 		    catch(Exception e)
 		    {
 		    	System.out.println("departure_flight_rate : "+dep_rate+" not equals to footer_dep_rate : " +footer_dep_rate);
+		    	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		    }
-		    try 
-		    {
-		    	ret_rate.equalsIgnoreCase(footer_ret_rate);
-		    	System.out.println("return_flight_rate " + ret_rate +" equals to footer_return_flight_rate :" + footer_ret_rate);
-		    	
-		    }
-		    catch(Exception e1)
-		    {
-		    	System.out.println("return_flight_rate " + ret_rate +" not equals to footer_return_flight_rate :" + footer_ret_rate);
-		    }
+		    
 			
 			
 		}
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		
 		
-	// Footer Prices
-		
-		System.out.println("Departure Round Trip Prices is :"  + footer_departureFlight_rate.getText());
-		System.out.println("Actual    Round Trip Price without Deicount is :" + footer_ReturnFlight_rate.getText());
-		System.out.println("Footeer Total Fare      : " + Footer_total_RoundTrip_Fare.getText());
+		// Footer Prices
+				
+		//		System.out.println("Departure Round Trip Prices is :"  + footer_departureFlight_rate.getText());
+		//		System.out.println("Actual    Round Trip Price without Deicount is :" + footer_ReturnFlight_rate.getText());
+		//		System.out.println("Footeer Total Fare      : " + Footer_total_RoundTrip_Fare.getText());
 		try 
 		{
 			System.out.println("Footer Price discounted : " + Footer_discounted_RoundTrip_price.getText());	

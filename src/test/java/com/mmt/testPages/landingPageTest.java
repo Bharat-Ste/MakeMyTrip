@@ -104,18 +104,9 @@ public class landingPageTest extends baseclass
 			
 			waitFor_fourSec();
 			
-			landingpage.varifyFlightDeatils(10);
-			
-			//landingpage.validate_FlightsRates_WithFooter_Prices(1);
-							
-//			8) Select radio button of top 10 options of “Departure Flight” and “Return Flight”
-//			9) Verify the same Departure Flight price and Return Flight price are getting reflected at bottom of the page
-//			10) Verify the correct total amount (Departure Flight price + Return Flight price) is getting reflected correctly
-		
-			
-			
-			
-		
+			//landingpage.varifyFlightDeatils(10);
+			landingpage.validate_FlightsRates_WithFooter_Prices();
+
 	}
 	@Test(priority=5, enabled=false)
 	public void dateSelect()
@@ -135,7 +126,7 @@ public class landingPageTest extends baseclass
 	@AfterMethod
 	public void exitsetup()
 	{
-		//driver.quit();
+		driver.quit();
 	}
 	
 	
