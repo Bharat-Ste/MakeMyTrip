@@ -96,12 +96,11 @@ public class landingPage extends baseclass
 		System.out.println("close_advertisement()");
 		try 
 		{
-			System.out.println("close_advertisement(20000");
-			Thread.sleep(50000);
+			Thread.sleep(1000);
 			driver.switchTo().frame(iframe);
 			Click_webElement(advertisment);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -628,29 +627,30 @@ public class landingPage extends baseclass
 			waitFor_OneSec();
 		}
 	
-		public boolean verifyMMT_logo()
+
+		
+		public boolean verificationElement_Exists_oR_Not(WebElement ele)
 		{
-			explicitWait(driver,mmtLogo,Integer.parseInt(prop.getProperty("explicitWait")));
-			highLightElement(driver,mmtLogo,prop);
-			return mmtLogo.isDisplayed();
-				
+			deleteBrowserCookies((Integer.parseInt(prop.getProperty("browserDeleteCookies_loopCount"))));
+			WebElement wait = new WebDriverWait(driver,Integer.parseInt(prop.getProperty("explicitWait"))).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOf(ele));
+			highLightElement(driver,ele,prop);
+			deleteBrowserCookies((Integer.parseInt(prop.getProperty("browserDeleteCookies_loopCount"))));
+			waitFor_OneSec();
+			return ele.isDisplayed();
 		}
 	
+		public boolean verifyMMT_logo()
+		{
+			return verificationElement_Exists_oR_Not(mmtLogo);	
+		}
 		public boolean verifyChkFlight_tabActive()
 		{
-			explicitWait(driver,checkFlights,Integer.parseInt(prop.getProperty("explicitWait")));
-			highLightElement(driver,checkFlights,prop);
-			return mmtLogo.isDisplayed();
-				
+			return verificationElement_Exists_oR_Not(checkFlights);	
 		}
 
 		public boolean verify_radioBtn_RoundTrip()
 		{
-			explicitWait(driver,radioBtn_RoundTrip,Integer.parseInt(prop.getProperty("explicitWait")));		
-			highLightElement(driver,radioBtn_RoundTrip,prop);
-			return radioBtn_RoundTrip.isDisplayed();
-			
-			
+			return verificationElement_Exists_oR_Not(radioBtn_RoundTrip);	
 		}
 
 		/**

@@ -28,7 +28,7 @@ public class landingPageTest extends baseclass
 		landingpage= new landingPage();
 	}
 	
-	@Test(priority = 1, enabled=true)
+	@Test(priority = 1, enabled=true,groups= {"Page Elements verification"})
 	public void verifyMMT_Logo()
 	{
 		boolean status = landingpage.verifyMMT_logo();
@@ -36,14 +36,14 @@ public class landingPageTest extends baseclass
 		
 	}
 	
-	@Test(priority=2, enabled=true)
+	@Test(priority=2, enabled=true,groups= {"Page Elements verification"})
 	public void verify_chkflight()
 	{
 		boolean status = landingpage.verifyChkFlight_tabActive();
 		Assert.assertEquals(status, true);
 	}
 	
-	@Test (priority=3, enabled=true)
+	@Test (priority=3, enabled=true,groups= {"Page Elements verification"})
 	public void verify_RoundTrip_radioBtn()
 	{
 		
@@ -52,7 +52,7 @@ public class landingPageTest extends baseclass
 		
 	}
 	
-	@Test(priority=4, enabled=true)
+	@Test(priority=4, enabled=true,groups= {"Page Flight rates verification"})
 	public void Print_FlightRates_For_OneStop_NonStop_And_Total_flights()
 	{
 			landingpage.click_ChkFlight_tabActive();
@@ -86,10 +86,10 @@ public class landingPageTest extends baseclass
 			deleteBrowserCookies((Integer.parseInt(prop.getProperty("browserDeleteCookies_loopCount"))));
 			//***********************************************//
 	}
-	@Test(priority=5, enabled=true)
+	@Test(priority=5, enabled=true,groups= {"Page Flight rates verification"})
 	public void Validate_Prices_OneStop_flight()
 	{
-		    landingpage.close_advertisement();
+		    
 			landingpage.click_ChkFlight_tabActive();
 			landingpage.click_radioBtn_RoundTrip();
 			landingpage.click_fromCity(); //Click and select city for departure flight
@@ -115,7 +115,7 @@ public class landingPageTest extends baseclass
 			landingpage.validate_FlightsRates_WithFooter_Prices();	
 			//***********************************************//
 	}
-	@Test(priority=6, enabled=true)
+	@Test(priority=6, enabled=true,groups= {"Page Flight rates verification"})
 	public void Validate_Prices_For_Top10_Flights()
 	{
 		landingpage.click_ChkFlight_tabActive();

@@ -6,6 +6,7 @@
       <class name="com.mmt.testPages.landingPageTest">
         <methods>
           <include name="setup"/>
+          <include name="verifyMMT_Logo"/>
           <include name="exitsetup"/>
           <include name="Validate_Prices_OneStop_flight"/>
         </methods>
