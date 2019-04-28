@@ -16,8 +16,10 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -58,6 +60,15 @@ public class baseclass
 		}
 	}
 	
+	public static void deleteBrowserCookies(int count)
+	{
+		for(int i=0;i<count;i++)
+		{
+			driver.manage().deleteAllCookies();
+		}
+		
+	}
+	
 	/**
 	 * @author bharat
 	 * @category , Run Test on Specific Browser
@@ -66,10 +77,28 @@ public class baseclass
 	public static void browserInitization()
 	{
 		String browser = prop.getProperty("browser").toLowerCase();
+		String incognito_broswer=prop.getProperty("browser_incognito").toLowerCase();
+		
+		
+		
 		if(browser.equalsIgnoreCase("chrome"))
 		{
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			if(incognito_broswer.equalsIgnoreCase(incognito_broswer))
+			{
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--incognito");
+				DesiredCapabilities capabilities= DesiredCapabilities.chrome();
+				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+				WebDriverManager.chromedriver().setup();
+				driver = new ChromeDriver(capabilities);
+				
+			}
+			else
+			{
+				WebDriverManager.chromedriver().setup();
+				driver = new ChromeDriver();
+			}
+			
 		}
 		else if(browser.equalsIgnoreCase("firefox"))
 		{
@@ -83,8 +112,11 @@ public class baseclass
 
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
-		
+		if((prop.getProperty("maximize_browser").toLowerCase()).equalsIgnoreCase("yes"))
+		{
+			driver.manage().window().maximize();
+		}
+
 		driver.get(prop.getProperty("url"));
 	
 	}

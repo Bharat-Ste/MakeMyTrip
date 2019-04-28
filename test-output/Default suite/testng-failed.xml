@@ -7,7 +7,7 @@
         <methods>
           <include name="setup"/>
           <include name="exitsetup"/>
-          <include name="bookFlightTicket"/>
+          <include name="Validate_Prices_OneStop_flight"/>
         </methods>
       </class> <!-- com.mmt.testPages.landingPageTest -->
     </classes>
